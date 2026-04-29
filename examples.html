@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Examples</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Site navigation">
+      <a class="brand" href="index.html">Track B Replay Verifier</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="validation.html">Validation</a>
+        <a href="examples.html" aria-current="page">Examples</a>
+        <a href="audit.html">Audit Package</a>
+        <a href="service.html">Service</a>
+        <a href="boundaries.html">Boundaries</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Examples</p>
+      <h1>Examples</h1>
+      <p class="lead">Each example identifies the bad path, the missing guardrail, the candidate fix, and the retest result under the supplied model and bound.</p>
+    </section>
+
+    <section class="section grid">
+      <article class="card">
+        <h2>Support Agent External Reply</h2>
+        <h3>Bad Path</h3>
+        <p class="path">read_ticket &rarr; access_customer_account_data &rarr; draft_reply &rarr; send_reply_external</p>
+        <h3>Missing Guardrail</h3>
+        <p><code>send_reply_external</code> did not require <code>manager_approval_received</code>.</p>
+        <h3>Fix</h3>
+        <p>Require <code>manager_approval_received</code> before <code>send_reply_external</code>.</p>
+        <h3>Retest</h3>
+        <p><span class="status">SAFE_WITHIN_BOUND</span> under supplied model and bound.</p>
+      </article>
+
+      <article class="card">
+        <h2>Refund Without Manager Approval</h2>
+        <h3>Bad Path</h3>
+        <p class="path">read_refund_request &rarr; access_customer_billing_record &rarr; draft_refund &rarr; issue_refund</p>
+        <h3>Missing Guardrail</h3>
+        <p><code>issue_refund</code> did not require <code>manager_approval_received</code>.</p>
+        <h3>Fix</h3>
+        <p>Require <code>manager_approval_received</code> before <code>issue_refund</code>.</p>
+        <h3>Retest</h3>
+        <p><span class="status">SAFE_WITHIN_BOUND</span> under supplied model and bound.</p>
+      </article>
+
+      <article class="card">
+        <h2>Destructive Delete Without Confirmation</h2>
+        <h3>Bad Path</h3>
+        <p class="path">select_file &rarr; delete_file</p>
+        <h3>Missing Guardrail</h3>
+        <p><code>delete_file</code> did not require <code>confirmation_received</code>.</p>
+        <h3>Fix</h3>
+        <p>Require <code>confirmation_received</code> before <code>delete_file</code>.</p>
+        <h3>Retest</h3>
+        <p><span class="status">SAFE_WITHIN_BOUND</span> under supplied model and bound.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2>Pattern</h2>
+      <div class="muted-box">
+        <p>The audit shows the exact sequence, the step where the bad state appears, and the guardrail needed to block that path.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Track B Replay Verifier Demo &mdash; bounded workflow replay-risk audit. Results are limited to supplied models and configured bounds.</p>
+  </footer>
+</body>
+</html>

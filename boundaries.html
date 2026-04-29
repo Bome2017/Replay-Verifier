@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boundaries</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Site navigation">
+      <a class="brand" href="index.html">Track B Replay Verifier</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="validation.html">Validation</a>
+        <a href="examples.html">Examples</a>
+        <a href="audit.html">Audit Package</a>
+        <a href="service.html">Service</a>
+        <a href="boundaries.html" aria-current="page">Boundaries</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Boundaries</p>
+      <h1>Boundaries</h1>
+      <p class="lead">Track B results are useful only when read with the supplied model, configured bound, assumptions, and exclusions.</p>
+    </section>
+
+    <section class="section grid two">
+      <div class="card">
+        <h2>What the Result Means</h2>
+        <h3><span class="status">UNSAFE</span></h3>
+        <p>A bad path exists in the supplied model within the configured bound.</p>
+        <h3><span class="status">SAFE_WITHIN_BOUND</span></h3>
+        <p>No bad path was found within the supplied model and configured bound.</p>
+      </div>
+      <div class="card">
+        <h2>What the Result Does Not Mean</h2>
+        <ul>
+          <li>It does not cover behavior outside the supplied model.</li>
+          <li>It does not cover all real-world system behavior.</li>
+          <li>It does not replace security review.</li>
+          <li>It does not model probabilistic LLM/tool behavior.</li>
+          <li>It does not perform full IAM/cloud analysis.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Formal Work Boundary</h2>
+      <div class="boundary-box">
+        <p>Track B is developed alongside broader CRSL/RSVT formal research, but this site presents only the bounded workflow audit demo. The demo should be evaluated on its scoped artifact: model, bound, verifier result, trace, remediation, and retest.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Sharing Boundary</h2>
+      <div class="card">
+        <ul>
+          <li><a href="../docs/PUBLIC_PRIVATE_BOUNDARY.md">Public/private boundary</a></li>
+          <li><a href="../docs/EXTERNAL_PACKET_INDEX.md">External packet index</a></li>
+          <li><a href="../docs/STARTER_PACKET_MANIFEST.md">Starter packet manifest</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Track B Replay Verifier Demo &mdash; bounded workflow replay-risk audit. Results are limited to supplied models and configured bounds.</p>
+  </footer>
+</body>
+</html>

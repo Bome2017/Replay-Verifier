@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audit Package</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Site navigation">
+      <a class="brand" href="index.html">Track B Replay Verifier</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="validation.html">Validation</a>
+        <a href="examples.html">Examples</a>
+        <a href="audit.html" aria-current="page">Audit Package</a>
+        <a href="service.html">Service</a>
+        <a href="boundaries.html">Boundaries</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Audit Package</p>
+      <h1>Audit Package</h1>
+      <p class="lead">A bounded replay-risk audit packages intake, model, verifier result, trace evidence, remediation, retest, and a written report.</p>
+    </section>
+
+    <section class="section">
+      <h2>Audit Flow</h2>
+      <div class="flow" aria-label="Audit flow">
+        <span>intake</span>
+        <span>model</span>
+        <span>verify</span>
+        <span>trace</span>
+        <span>remediate</span>
+        <span>retest</span>
+        <span>report</span>
+      </div>
+    </section>
+
+    <section class="section grid two">
+      <div class="card">
+        <h2>Inputs Needed</h2>
+        <ul>
+          <li>workflow description</li>
+          <li>actions</li>
+          <li>required approvals/confirmations</li>
+          <li>dangerous outcome</li>
+          <li>assumptions</li>
+          <li>bound</li>
+          <li>exclusions</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Outputs Returned</h2>
+        <ul>
+          <li>workflow model</li>
+          <li>verifier result</li>
+          <li><span class="status">UNSAFE</span> trace if reachable</li>
+          <li><span class="status">SAFE_WITHIN_BOUND</span> result if no violation is found within model/bound</li>
+          <li>remediation notes</li>
+          <li>safe-variant retest</li>
+          <li>assumptions and exclusions</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Evidence Quality</h2>
+      <p>Trace steps include <code>state_before</code>, <code>state_delta</code>, and <code>state_after</code>, making the counterexample reconstructable.</p>
+    </section>
+
+    <section class="section">
+      <h2>Related Docs</h2>
+      <div class="card">
+        <ul>
+          <li><a href="../docs/external_one_page_brief.md">External one-page brief</a></li>
+          <li><a href="../docs/repeatability_validation_matrix.md">Repeatability validation matrix</a></li>
+          <li><a href="../docs/customer_input_template.md">Customer input template</a></li>
+          <li><a href="../docs/audit_report_template.md">Audit report template</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Track B Replay Verifier Demo &mdash; bounded workflow replay-risk audit. Results are limited to supplied models and configured bounds.</p>
+  </footer>
+</body>
+</html>
