@@ -9,7 +9,7 @@
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Site navigation">
-      <a class="brand" href="index.html">Track B Replay Verifier</a>
+      <a class="brand" href="index.html">Bounded Replay-Risk Audit</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="validation.html">Validation</a>
@@ -17,6 +17,7 @@
         <a href="audit.html">Audit Package</a>
         <a href="service.html">Service</a>
         <a href="boundaries.html" aria-current="page">Boundaries</a>
+        <a href="downloads.html">Downloads</a>
       </div>
     </nav>
   </header>
@@ -25,7 +26,7 @@
     <section class="hero">
       <p class="eyebrow">Boundaries</p>
       <h1>Boundaries</h1>
-      <p class="lead">Track B results are useful only when read with the supplied model, configured bound, assumptions, and exclusions.</p>
+      <p class="lead">Audit results are useful only when read with the supplied model, configured bound, assumptions, and exclusions.</p>
     </section>
 
     <section class="section grid two">
@@ -37,7 +38,7 @@
         <p>No bad path was found within the supplied model and configured bound.</p>
       </div>
       <div class="card">
-        <h2>What the Result Does Not Mean</h2>
+        <h2>What Remains Outside Scope</h2>
         <ul>
           <li>It does not cover behavior outside the supplied model.</li>
           <li>It does not cover all real-world system behavior.</li>
@@ -49,9 +50,9 @@
     </section>
 
     <section class="section">
-      <h2>Formal Work Boundary</h2>
+      <h2>Technical Context</h2>
       <div class="boundary-box">
-        <p>Track B is developed alongside broader CRSL/RSVT formal research, but this site presents only the bounded workflow audit demo. The demo should be evaluated on its scoped artifact: model, bound, verifier result, trace, remediation, and retest.</p>
+        <p>This demo is developed alongside broader formal research, but the public site presents only the bounded workflow audit artifact. Evaluate it on the scoped model, bound, verifier result, trace, remediation, and retest. Formal context is separated into <a href="../docs/TECHNICAL_APPENDIX_FORMAL_CONTEXT.md">the technical appendix</a>.</p>
       </div>
     </section>
 
@@ -62,13 +63,14 @@
           <li><a href="../docs/PUBLIC_PRIVATE_BOUNDARY.md">Public/private boundary</a></li>
           <li><a href="../docs/EXTERNAL_PACKET_INDEX.md">External packet index</a></li>
           <li><a href="../docs/STARTER_PACKET_MANIFEST.md">Starter packet manifest</a></li>
+          <li><a href="../docs/TRACKB_PUBLIC_PACKET_FREEZE_REPORT.md">Public packet freeze report</a></li>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Track B Replay Verifier Demo &mdash; bounded workflow replay-risk audit. Results are limited to supplied models and configured bounds.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
   </footer>
 </body>
 </html>

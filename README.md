@@ -1,6 +1,6 @@
 # Track B Static Site
 
-This folder contains a GitHub Pages-ready static presentation layer for the Track B Replay Verifier Demo.
+This folder contains the static presentation layer for the public brand `Bounded Replay-Risk Audit Demo`. Track B remains the internal demo codename.
 
 ## Open Locally
 
@@ -12,6 +12,7 @@ Open `index.html` directly in a browser, then use the local navigation links:
 - `audit.html`
 - `service.html`
 - `boundaries.html`
+- `downloads.html`
 
 No local server is required. The pages use plain HTML and CSS with relative links only.
 

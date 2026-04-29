@@ -9,7 +9,7 @@
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Site navigation">
-      <a class="brand" href="index.html">Track B Replay Verifier</a>
+      <a class="brand" href="index.html">Bounded Replay-Risk Audit</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="validation.html" aria-current="page">Validation</a>
@@ -17,6 +17,7 @@
         <a href="audit.html">Audit Package</a>
         <a href="service.html">Service</a>
         <a href="boundaries.html">Boundaries</a>
+        <a href="downloads.html">Downloads</a>
       </div>
     </nav>
   </header>
@@ -25,14 +26,14 @@
     <section class="hero">
       <p class="eyebrow">Validation</p>
       <h1>Validation and Repeatability</h1>
-      <p class="lead">The current demo checks scoped Boolean workflow models with a dependency-free reference verifier and an optional Z3 backend for supported examples.</p>
+      <p class="lead">The current demo checks scoped Boolean workflow models with a dependency-free bounded reference checker and an optional solver cross-check for supported examples.</p>
     </section>
 
     <section class="section">
       <h2>What Has Been Validated</h2>
       <div class="grid two">
-        <div class="card"><h3>Reference Tests</h3><p>Brute-force reference tests pass for the included bounded workflow examples.</p></div>
-        <div class="card"><h3>Backend Agreement</h3><p>The optional Z3 backend agrees with the brute-force reference on supported examples when run in the local validated environment.</p></div>
+        <div class="card"><h3>Reference Tests</h3><p>Bounded reference checker tests pass for the included workflow examples.</p></div>
+        <div class="card"><h3>Solver Cross-Check</h3><p>The optional Z3 solver cross-check agrees with the bounded reference checker on supported examples when run in the local validated environment.</p></div>
         <div class="card"><h3>Repeatability Runs</h3><p>Repeatability dry runs are completed across support, refund, permission, and data-export workflow families.</p></div>
         <div class="card"><h3>Trace and Retest Shape</h3><p>Unsafe cases return reconstructable traces. Guarded variants return <span class="status">SAFE_WITHIN_BOUND</span> under the supplied model and bound.</p></div>
       </div>
@@ -44,66 +45,67 @@
         <table>
           <thead>
             <tr>
-              <th>Workflow Family</th>
+              <th>Workflow</th>
               <th>Failure Shape</th>
               <th>Unsafe Result</th>
               <th>First Bad Step</th>
               <th>Guarded Variant Result</th>
-              <th>Backend Agreement</th>
+              <th>Solver Cross-Check</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><code>support_agent_external_reply_risk</code></td>
+              <td>Support reply</td>
               <td>External reply after customer account data access before manager approval.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>4</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>true / matched</td>
+              <td>Matched</td>
             </tr>
             <tr>
-              <td><code>refund_without_manager_approval</code></td>
+              <td>Refund approval</td>
               <td>Refund issued before manager approval.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>4</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>true / matched</td>
+              <td>Matched</td>
             </tr>
             <tr>
-              <td><code>permission_escalation_without_authorization</code></td>
+              <td>Permission escalation</td>
               <td>Elevated access granted before administrator authorization.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>4</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>true / matched</td>
+              <td>Matched</td>
             </tr>
             <tr>
-              <td><code>sensitive_data_export_without_authorization</code></td>
+              <td>Data export</td>
               <td>Sensitive data exported before export authorization.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>3</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>true / matched</td>
+              <td>Matched</td>
             </tr>
             <tr>
-              <td><code>agent_email_exfiltration</code></td>
+              <td>Email exfiltration</td>
               <td>Customer data emailed externally without approval.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>3</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>true / matched</td>
+              <td>Matched</td>
             </tr>
             <tr>
-              <td><code>agent_delete_without_confirmation</code></td>
+              <td>Delete confirmation</td>
               <td>File deletion before confirmation.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>2</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>true / matched</td>
+              <td>Matched</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <p class="note">Full artifact names are available in the downloadable repeatability matrix.</p>
     </section>
 
     <section class="section">
@@ -120,7 +122,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Track B Replay Verifier Demo &mdash; bounded workflow replay-risk audit. Results are limited to supplied models and configured bounds.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
   </footer>
 </body>
 </html>

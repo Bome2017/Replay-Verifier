@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bounded Replay-Risk Audits</title>
+  <title>Bounded Replay-Risk Audit Demo</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Site navigation">
-      <a class="brand" href="index.html">Track B Replay Verifier</a>
+      <a class="brand" href="index.html">Bounded Replay-Risk Audit</a>
       <div class="nav-links">
         <a href="index.html" aria-current="page">Home</a>
         <a href="validation.html">Validation</a>
@@ -17,15 +17,27 @@
         <a href="audit.html">Audit Package</a>
         <a href="service.html">Service</a>
         <a href="boundaries.html">Boundaries</a>
+        <a href="downloads.html">Downloads</a>
       </div>
     </nav>
   </header>
 
   <main class="page">
     <section class="hero">
-      <p class="eyebrow">Bounded Replay-Risk Audits</p>
+      <p class="eyebrow">Bounded Replay-Risk Audit Demo</p>
       <h1>Find dangerous workflow paths before deployment.</h1>
       <p class="lead">A bounded replay-risk audit checks whether a workflow can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs.</p>
+    </section>
+
+    <section class="section">
+      <h2>About the Audit</h2>
+      <p>This is a pre-deployment workflow check. It asks whether a scoped workflow can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs.</p>
+      <p>It is useful when a team can describe a workflow as actions, preconditions, effects, and a bad outcome to avoid.</p>
+      <div class="grid">
+        <div class="card"><h3>Find Bad Paths</h3><p>Find bad paths before deployment.</p></div>
+        <div class="card"><h3>Locate the Guardrail</h3><p>Locate the missing guardrail.</p></div>
+        <div class="card"><h3>Retest the Fix</h3><p>Retest the guarded version.</p></div>
+      </div>
     </section>
 
     <section class="section">
@@ -63,7 +75,8 @@
 
     <section class="section">
       <h2>Example Bad Path</h2>
-      <p class="path">read_ticket &rarr; access_customer_account_data &rarr; draft_reply &rarr; send_reply_external</p>
+      <p class="display-path">Read ticket &rarr; access account data &rarr; draft reply &rarr; send externally</p>
+      <p class="trace-line">read_ticket &rarr; access_customer_account_data &rarr; draft_reply &rarr; send_reply_external</p>
       <p>The bad state appears because external send occurs before manager approval.</p>
     </section>
 
@@ -71,12 +84,34 @@
       <h2>Current Demo Status</h2>
       <div class="muted-box">
         <ul>
-          <li>Dependency-free brute-force reference verifier.</li>
-          <li>Optional locally validated Z3 backend.</li>
+          <li>Dependency-free bounded reference checker.</li>
+          <li>Optional solver cross-check for supported examples.</li>
           <li>Multiple workflow families tested.</li>
           <li>Repeatability dry runs completed.</li>
           <li>No verifier source-code changes needed for repeatability dry runs.</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Related Public Demos</h2>
+      <p>Related public demos from the same project family. Each demo has its own scope, assumptions, validation status, and limitation notes.</p>
+      <div class="grid">
+        <div class="card">
+          <h3><a href="https://bome2017.github.io/ag-bank-scoreboard/">A/G Bank Scoreboard</a></h3>
+          <p>Public dashboard for A/G-style bank risk monitoring using appearance/ground divergence signals and documented validation boundaries.</p>
+        </div>
+        <div class="card">
+          <h3><a href="https://bome2017.github.io/ag-higher-education/">A/G Higher Education</a></h3>
+          <p>Exploratory A/G-style higher-education institutional risk/stability demo with explicit data-scope limits.</p>
+        </div>
+        <div class="card">
+          <h3><a href="https://bome2017.github.io/ag-corporate-filings/">A/G Corporate Filings</a></h3>
+          <p>Corporate filings extension exploring A/G-style distress and disclosure signals from public company filings.</p>
+        </div>
+      </div>
+      <div class="muted-box">
+        <p>Track B is a separate bounded workflow replay-risk audit demo, not an A/G financial, institutional, or corporate scoring system. Scope and assumptions differ by demo.</p>
       </div>
     </section>
 
@@ -91,7 +126,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Track B Replay Verifier Demo &mdash; bounded workflow replay-risk audit. Results are limited to supplied models and configured bounds.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
   </footer>
 </body>
 </html>
