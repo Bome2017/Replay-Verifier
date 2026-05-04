@@ -72,7 +72,7 @@ Results are bounded to the supplied model and execution depth. `SAFE_WITHIN_BOUN
 
 ## Formal Backing
 
-The associated CRSL/RSVT formal proof package supplies replay-to-SAT infrastructure and claim discipline. It does not certify this implementation as production-safe.
+The associated CRSL/RSVT formal proof package (CRSL = Certificate–Replay Substitution Law; RSVT = Recursive Structural Verification Theory) supplies replay-to-SAT infrastructure and claim discipline. It does not certify this implementation as production-safe.
 
 Levels 2.8d-RX, 2.8e, and 3.1 provide build-verified Lean reductions from scoped replay source classes to `TRACED_3_SAT`. Level 3.2-1 proves `CNF3_SAT` and `TRACED_3_SAT` equivalent as languages over `Cnf3`. These results support architectural credibility, not operational guarantees for the demo.
 

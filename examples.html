@@ -71,6 +71,32 @@
         <h3>Retest</h3>
         <p><span class="status">SAFE_WITHIN_BOUND</span> under supplied model and bound.</p>
       </article>
+
+      <article class="card">
+        <h2>Vendor Payment Without Verification</h2>
+        <p class="note">Larger workflow: 9 state variables, 8 actions, bound 8. The bad path is not obvious by reading the JSON.</p>
+        <h3>Bad Path</h3>
+        <p class="display-path">Read invoice &rarr; access vendor record &rarr; access payment system &rarr; prepare wire &rarr; send wire</p>
+        <h3>Technical Trace</h3>
+        <p class="trace-line">read_invoice &rarr; access_vendor_record &rarr; access_payment_system &rarr; prepare_wire &rarr; send_wire</p>
+        <h3>Why It's Easy to Miss</h3>
+        <p>The workflow has separate actions for <code>access_vendor_record</code> (look up the vendor) and <code>verify_vendor</code> (perform verification). A reviewer reading <code>send_wire</code>'s preconditions sees only <code>wire_prepared: true</code> and may assume that path implies vendor verification. The forbidden condition checks <code>vendor_verified</code> directly, so the workflow reaches the bad state at step 5 even though vendor verification, manager approval, and compliance review are all available actions.</p>
+        <h3>Missing Guardrail</h3>
+        <p><code>send_wire</code> did not require <code>vendor_verified</code>, <code>compliance_review_passed</code>, or <code>manager_approved</code>.</p>
+        <h3>Fix</h3>
+        <p>Require <code>vendor_verified</code>, <code>compliance_review_passed</code>, and <code>manager_approved</code> before <code>send_wire</code>.</p>
+        <h3>Retest</h3>
+        <p><span class="status">SAFE_WITHIN_BOUND</span> under supplied model and bound. Backend cross-check (brute-force vs. Z3) returned <code>status_match: True</code> on both variants.</p>
+        <h3>Artifacts</h3>
+        <ul>
+          <li><a href="examples/agent_vendor_payment_unauthorized/workflow.json">Unauthorized workflow.json</a></li>
+          <li><a href="outputs/agent_vendor_payment_unauthorized/result.json">Unauthorized result.json (full trace)</a></li>
+          <li><a href="outputs/agent_vendor_payment_unauthorized/report.md">Unauthorized report.md</a></li>
+          <li><a href="examples/agent_vendor_payment_guarded/workflow.json">Guarded workflow.json</a></li>
+          <li><a href="outputs/agent_vendor_payment_guarded/result.json">Guarded result.json</a></li>
+          <li><a href="outputs/agent_vendor_payment_guarded/report.md">Guarded report.md</a></li>
+        </ul>
+      </article>
     </section>
 
     <section class="section">

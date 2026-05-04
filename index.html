@@ -94,6 +94,22 @@
     </section>
 
     <section class="section">
+      <h2>Why This Matters for AI Agent Safety</h2>
+      <p>LLM-driven agents make tool-use decisions by reasoning over their available actions. When an agent is given a bag of tools, it can sometimes find an action ordering that satisfies the immediate request while bypassing intended guardrails &mdash; even when no individual tool call looks like misuse. Approval gates, confirmation gates, and authorization checks only protect against composed misuse if the workflow definition actually forces the agent through them.</p>
+      <p>This audit gives builders a way to model the intended workflow as a small Boolean state machine and ask: <em>is there any reachable action ordering that reaches a forbidden composed state within a given depth?</em> When the answer is <span class="status">UNSAFE</span>, the audit returns the exact step sequence as a reconstructable counterexample, identifies the step where the bad state first appears, and supports a guarded-variant retest after the missing precondition is added.</p>
+      <div class="grid two">
+        <div class="card">
+          <h3>Where it fits</h3>
+          <p>Pre-deployment workflow check during agent design and review. Complementary to runtime guardrails like prompt-safety filters, tool permission scopes, and per-call approval UIs &mdash; it catches a different class of failure (composed action ordering) before deployment, in a small artifact a team can version-control alongside the agent definition.</p>
+        </div>
+        <div class="card">
+          <h3>Where it does not fit</h3>
+          <p>This is not a probabilistic LLM behavior model, not a runtime monitor, not an IAM/cloud graph analyzer, and not a substitute for security review. It does not reason about prompt injection, tool output content, or whether the agent will choose any particular path at runtime &mdash; only whether the path exists in the workflow definition.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Related Public Demos</h2>
       <p>Related public demos from the same project family. Each demo has its own scope, assumptions, validation status, and limitation notes.</p>
       <div class="grid">

@@ -1,0 +1,178 @@
+{
+  "workflow": "agent_vendor_payment_unauthorized",
+  "schema_version": "0.1",
+  "bound": 8,
+  "status": "UNSAFE",
+  "violation": {
+    "condition": {
+      "wire_sent": true,
+      "vendor_verified": false
+    },
+    "first_bad_step": 5
+  },
+  "trace": [
+    {
+      "step": 0,
+      "action": null,
+      "state_before": null,
+      "state_delta": {},
+      "state_after": {
+        "invoice_received": true,
+        "invoice_read": false,
+        "vendor_record_accessed": false,
+        "payment_system_accessed": false,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      }
+    },
+    {
+      "step": 1,
+      "action": "read_invoice",
+      "state_before": {
+        "invoice_received": true,
+        "invoice_read": false,
+        "vendor_record_accessed": false,
+        "payment_system_accessed": false,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      },
+      "state_delta": {
+        "invoice_read": true
+      },
+      "state_after": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": false,
+        "payment_system_accessed": false,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      }
+    },
+    {
+      "step": 2,
+      "action": "access_vendor_record",
+      "state_before": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": false,
+        "payment_system_accessed": false,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      },
+      "state_delta": {
+        "vendor_record_accessed": true
+      },
+      "state_after": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": true,
+        "payment_system_accessed": false,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      }
+    },
+    {
+      "step": 3,
+      "action": "access_payment_system",
+      "state_before": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": true,
+        "payment_system_accessed": false,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      },
+      "state_delta": {
+        "payment_system_accessed": true
+      },
+      "state_after": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": true,
+        "payment_system_accessed": true,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      }
+    },
+    {
+      "step": 4,
+      "action": "prepare_wire",
+      "state_before": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": true,
+        "payment_system_accessed": true,
+        "vendor_verified": false,
+        "wire_prepared": false,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      },
+      "state_delta": {
+        "wire_prepared": true
+      },
+      "state_after": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": true,
+        "payment_system_accessed": true,
+        "vendor_verified": false,
+        "wire_prepared": true,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      }
+    },
+    {
+      "step": 5,
+      "action": "send_wire",
+      "state_before": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": true,
+        "payment_system_accessed": true,
+        "vendor_verified": false,
+        "wire_prepared": true,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": false
+      },
+      "state_delta": {
+        "wire_sent": true
+      },
+      "state_after": {
+        "invoice_received": true,
+        "invoice_read": true,
+        "vendor_record_accessed": true,
+        "payment_system_accessed": true,
+        "vendor_verified": false,
+        "wire_prepared": true,
+        "compliance_review_passed": false,
+        "manager_approved": false,
+        "wire_sent": true
+      }
+    }
+  ],
+  "claim_boundary": "UNSAFE means a bad replay exists within the configured bound and model assumptions. SAFE_WITHIN_BOUND does not prove global safety."
+}

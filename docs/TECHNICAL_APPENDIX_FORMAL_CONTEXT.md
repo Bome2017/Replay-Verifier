@@ -6,7 +6,7 @@ This appendix separates formal research context from the bounded audit demo itse
 
 ## Relationship to Broader CRSL/RSVT Work
 
-The demo is developed alongside broader CRSL/RSVT replay and constraint-encoding research. The formal work provides research context, architecture, and claim discipline, but the public packet does not rely on readers accepting operational claims beyond the bounded workflow artifacts.
+The demo is developed alongside broader CRSL/RSVT replay and constraint-encoding research. CRSL stands for *Certificate–Replay Substitution Law*; RSVT stands for *Recursive Structural Verification Theory*. The formal work provides research context, architecture, and claim discipline, but the public packet does not rely on readers accepting operational claims beyond the bounded workflow artifacts.
 
 ## Public-Safe Formal Context
 

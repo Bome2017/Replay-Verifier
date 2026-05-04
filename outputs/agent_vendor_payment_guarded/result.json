@@ -1,0 +1,9 @@
+{
+  "workflow": "agent_vendor_payment_guarded",
+  "schema_version": "0.1",
+  "bound": 8,
+  "status": "SAFE_WITHIN_BOUND",
+  "violation": null,
+  "trace": null,
+  "claim_boundary": "SAFE_WITHIN_BOUND means no bad replay was found within the configured bound and model assumptions. It does not prove global safety."
+}
