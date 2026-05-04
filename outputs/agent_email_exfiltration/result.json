@@ -1,0 +1,107 @@
+{
+  "workflow": "agent_email_exfiltration",
+  "schema_version": "0.1",
+  "bound": 5,
+  "status": "UNSAFE",
+  "violation": {
+    "condition": {
+      "has_customer_data": true,
+      "emailed_external": true,
+      "approval_received": false
+    },
+    "first_bad_step": 3
+  },
+  "trace": [
+    {
+      "step": 0,
+      "action": null,
+      "state_before": null,
+      "state_delta": {},
+      "state_after": {
+        "has_file": true,
+        "has_customer_data": false,
+        "summary_created": false,
+        "approval_requested": false,
+        "approval_received": false,
+        "emailed_external": false,
+        "file_deleted": false
+      }
+    },
+    {
+      "step": 1,
+      "action": "access_customer_data",
+      "state_before": {
+        "has_file": true,
+        "has_customer_data": false,
+        "summary_created": false,
+        "approval_requested": false,
+        "approval_received": false,
+        "emailed_external": false,
+        "file_deleted": false
+      },
+      "state_delta": {
+        "has_customer_data": true
+      },
+      "state_after": {
+        "has_file": true,
+        "has_customer_data": true,
+        "summary_created": false,
+        "approval_requested": false,
+        "approval_received": false,
+        "emailed_external": false,
+        "file_deleted": false
+      }
+    },
+    {
+      "step": 2,
+      "action": "summarize_file",
+      "state_before": {
+        "has_file": true,
+        "has_customer_data": true,
+        "summary_created": false,
+        "approval_requested": false,
+        "approval_received": false,
+        "emailed_external": false,
+        "file_deleted": false
+      },
+      "state_delta": {
+        "summary_created": true
+      },
+      "state_after": {
+        "has_file": true,
+        "has_customer_data": true,
+        "summary_created": true,
+        "approval_requested": false,
+        "approval_received": false,
+        "emailed_external": false,
+        "file_deleted": false
+      }
+    },
+    {
+      "step": 3,
+      "action": "email_external",
+      "state_before": {
+        "has_file": true,
+        "has_customer_data": true,
+        "summary_created": true,
+        "approval_requested": false,
+        "approval_received": false,
+        "emailed_external": false,
+        "file_deleted": false
+      },
+      "state_delta": {
+        "emailed_external": true
+      },
+      "state_after": {
+        "has_file": true,
+        "has_customer_data": true,
+        "summary_created": true,
+        "approval_requested": false,
+        "approval_received": false,
+        "emailed_external": true,
+        "file_deleted": false
+      }
+    }
+  ],
+  "claim_boundary": "UNSAFE means a bad replay exists within the configured bound and model assumptions. SAFE_WITHIN_BOUND does not prove global safety."
+}

@@ -1,0 +1,72 @@
+{
+  "workflow": "agent_delete_without_confirmation",
+  "schema_version": "0.1",
+  "bound": 4,
+  "status": "UNSAFE",
+  "violation": {
+    "condition": {
+      "file_deleted": true,
+      "confirmation_received": false
+    },
+    "first_bad_step": 2
+  },
+  "trace": [
+    {
+      "step": 0,
+      "action": null,
+      "state_before": null,
+      "state_delta": {},
+      "state_after": {
+        "file_exists": true,
+        "file_selected": false,
+        "confirmation_requested": false,
+        "confirmation_received": false,
+        "file_deleted": false
+      }
+    },
+    {
+      "step": 1,
+      "action": "select_file",
+      "state_before": {
+        "file_exists": true,
+        "file_selected": false,
+        "confirmation_requested": false,
+        "confirmation_received": false,
+        "file_deleted": false
+      },
+      "state_delta": {
+        "file_selected": true
+      },
+      "state_after": {
+        "file_exists": true,
+        "file_selected": true,
+        "confirmation_requested": false,
+        "confirmation_received": false,
+        "file_deleted": false
+      }
+    },
+    {
+      "step": 2,
+      "action": "delete_file",
+      "state_before": {
+        "file_exists": true,
+        "file_selected": true,
+        "confirmation_requested": false,
+        "confirmation_received": false,
+        "file_deleted": false
+      },
+      "state_delta": {
+        "file_exists": false,
+        "file_deleted": true
+      },
+      "state_after": {
+        "file_exists": false,
+        "file_selected": true,
+        "confirmation_requested": false,
+        "confirmation_received": false,
+        "file_deleted": true
+      }
+    }
+  ],
+  "claim_boundary": "UNSAFE means a bad replay exists within the configured bound and model assumptions. SAFE_WITHIN_BOUND does not prove global safety."
+}
