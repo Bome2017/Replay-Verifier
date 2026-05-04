@@ -33,17 +33,19 @@
       <div class="card">
         <h2>Start Here</h2>
         <ul>
-          <li><a href="docs/external_one_page_brief.md">One-page external brief</a></li>
-          <li><a href="docs/repeatability_validation_matrix.md">Repeatability validation matrix</a></li>
-          <li><a href="docs/validation_run_evidence.md">Validation run evidence</a></li>
+          <li><a href="../docs/external_one_page_brief.md">One-page external brief</a></li>
+          <li><a href="../docs/repeatability_validation_matrix.md">Repeatability validation matrix</a></li>
+          <li><a href="../docs/TRACKB_PUBLIC_PACKET_FREEZE_REPORT.md">Public packet freeze report</a></li>
+          <li><a href="../docs/STARTER_PACKET_MANIFEST.md">Starter packet manifest</a></li>
         </ul>
       </div>
       <div class="card">
-        <h2>Templates &amp; Boundaries</h2>
+        <h2>Boundaries</h2>
         <ul>
-          <li><a href="docs/customer_input_template.md">Customer input template</a></li>
-          <li><a href="docs/audit_report_template.md">Audit report template</a></li>
-          <li><a href="docs/TECHNICAL_APPENDIX_FORMAL_CONTEXT.md">Technical appendix for formal context</a></li>
+          <li><a href="../docs/PUBLIC_PRIVATE_BOUNDARY.md">Public/private boundary</a></li>
+          <li><a href="../docs/DO_NOT_SHARE_INTERNAL.md">Do-not-share list</a></li>
+          <li><a href="../docs/TECHNICAL_APPENDIX_FORMAL_CONTEXT.md">Technical appendix for formal context</a></li>
+          <li><a href="../docs/TRACKB_CROSS_AUDIT_CONTEXT_NOTES.md">Cross-audit context notes</a></li>
         </ul>
       </div>
     </section>
@@ -65,7 +67,7 @@
         </div>
       </div>
       <div class="muted-box">
-        <p>This demo is separate from the A/G public demos. Each demo has its own scope, assumptions, validation status, and limitation notes.</p>
+        <p>Track B is separate from the A/G public demos. Each demo has its own scope, assumptions, validation status, and limitation notes.</p>
       </div>
     </section>
 
@@ -82,15 +84,19 @@
           <tbody>
             <tr>
               <td>Workflow examples</td>
-              <td><a href="examples/agent_email_exfiltration/workflow.json"><code>agent_email_exfiltration/workflow.json</code></a><br><a href="examples/agent_email_requires_approval/workflow.json"><code>agent_email_requires_approval/workflow.json</code></a><br><a href="examples/agent_delete_without_confirmation/workflow.json"><code>agent_delete_without_confirmation/workflow.json</code></a><br><a href="examples/agent_delete_requires_confirmation/workflow.json"><code>agent_delete_requires_confirmation/workflow.json</code></a></td>
+              <td><code>examples/agent_email_exfiltration/workflow.json</code><br><code>examples/agent_email_requires_approval/workflow.json</code><br><code>examples/agent_delete_without_confirmation/workflow.json</code><br><code>examples/agent_delete_requires_confirmation/workflow.json</code></td>
             </tr>
             <tr>
               <td>Generated outputs</td>
-              <td><a href="outputs/agent_email_exfiltration/result.json"><code>agent_email_exfiltration/result.json</code></a><br><a href="outputs/agent_email_exfiltration/report.md"><code>agent_email_exfiltration/report.md</code></a><br><a href="outputs/agent_delete_without_confirmation/result.json"><code>agent_delete_without_confirmation/result.json</code></a><br><a href="outputs/agent_delete_without_confirmation/report.md"><code>agent_delete_without_confirmation/report.md</code></a></td>
+              <td><code>outputs/agent_email_exfiltration/result.json</code><br><code>outputs/agent_email_exfiltration/report.md</code><br><code>outputs/agent_delete_without_confirmation/result.json</code><br><code>outputs/agent_delete_without_confirmation/report.md</code></td>
             </tr>
             <tr>
               <td>Customer-style dry run</td>
-              <td><a href="dry_runs/customer_style_agent_support_escalation/intake.md"><code>customer_style_agent_support_escalation/intake.md</code></a><br><a href="dry_runs/customer_style_agent_support_escalation/audit_report.md"><code>customer_style_agent_support_escalation/audit_report.md</code></a><br><a href="dry_runs/customer_style_agent_support_escalation/remediation_notes.md"><code>customer_style_agent_support_escalation/remediation_notes.md</code></a></td>
+              <td><code>dry_runs/customer_style_agent_support_escalation/intake.md</code><br><code>dry_runs/customer_style_agent_support_escalation/audit_report.md</code><br><code>dry_runs/customer_style_agent_support_escalation/remediation_notes.md</code></td>
+            </tr>
+            <tr>
+              <td>Service readiness</td>
+              <td><code>docs/DEMO_REVIEW_PACKET.md</code><br><code>docs/SERVICE_READINESS_CHECKLIST.md</code></td>
             </tr>
           </tbody>
         </table>
@@ -99,13 +105,13 @@
 
     <section class="section">
       <div class="boundary-box">
-        <p>This page links a curated subset of the demo. Results are bounded to the supplied workflow models and configured search depth shown in each example.</p>
+        <p>Exclude local environments, caches, Track A internals, raw scratch files, real customer data, and broad formal research materials from the public packet.</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
   </footer>
 </body>
 </html>

@@ -26,15 +26,15 @@
     <section class="hero">
       <p class="eyebrow">Bounded Replay-Risk Audit Demo</p>
       <h1>Find dangerous workflow paths before deployment.</h1>
-      <p class="lead">A bounded replay-risk audit checks whether a workflow can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs.</p>
+      <p class="lead">A bounded replay-risk audit checks whether a supplied workflow model can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs, within the configured bound.</p>
     </section>
 
     <section class="section">
       <h2>About the Audit</h2>
-      <p>This is a pre-deployment workflow check. It asks whether a scoped workflow can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs.</p>
+      <p>This is a bounded pre-deployment check on a supplied Boolean workflow model. It asks whether the scoped workflow model can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs, within the configured bound.</p>
       <p>It is useful when a team can describe a workflow as actions, preconditions, effects, and a bad outcome to avoid.</p>
       <div class="grid">
-        <div class="card"><h3>Find Bad Paths</h3><p>Find bad paths before deployment.</p></div>
+        <div class="card"><h3>Find Bad Paths</h3><p>Find bad paths in the supplied workflow model.</p></div>
         <div class="card"><h3>Locate the Guardrail</h3><p>Locate the missing guardrail.</p></div>
         <div class="card"><h3>Retest the Fix</h3><p>Retest the guarded version.</p></div>
       </div>
@@ -94,22 +94,6 @@
     </section>
 
     <section class="section">
-      <h2>Why This Matters for AI Agent Safety</h2>
-      <p>LLM-driven agents make tool-use decisions by reasoning over their available actions. When an agent is given a bag of tools, it can sometimes find an action ordering that satisfies the immediate request while bypassing intended guardrails &mdash; even when no individual tool call looks like misuse. Approval gates, confirmation gates, and authorization checks only protect against composed misuse if the workflow definition actually forces the agent through them.</p>
-      <p>This audit gives builders a way to model the intended workflow as a small Boolean state machine and ask: <em>is there any reachable action ordering that reaches a forbidden composed state within a given depth?</em> When the answer is <span class="status">UNSAFE</span>, the audit returns the exact step sequence as a reconstructable counterexample, identifies the step where the bad state first appears, and supports a guarded-variant retest after the missing precondition is added.</p>
-      <div class="grid two">
-        <div class="card">
-          <h3>Where it fits</h3>
-          <p>Pre-deployment workflow check during agent design and review. Complementary to runtime guardrails like prompt-safety filters, tool permission scopes, and per-call approval UIs &mdash; it catches a different class of failure (composed action ordering) before deployment, in a small artifact a team can version-control alongside the agent definition.</p>
-        </div>
-        <div class="card">
-          <h3>Where it does not fit</h3>
-          <p>This is not a probabilistic LLM behavior model, not a runtime monitor, not an IAM/cloud graph analyzer, and not a substitute for security review. It does not reason about prompt injection, tool output content, or whether the agent will choose any particular path at runtime &mdash; only whether the path exists in the workflow definition.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
       <h2>Related Public Demos</h2>
       <p>Related public demos from the same project family. Each demo has its own scope, assumptions, validation status, and limitation notes.</p>
       <div class="grid">
@@ -127,7 +111,7 @@
         </div>
       </div>
       <div class="muted-box">
-        <p>This is a separate bounded workflow replay-risk audit demo, not an A/G financial, institutional, or corporate scoring system. Scope and assumptions differ by demo.</p>
+        <p>Track B is a separate bounded workflow replay-risk audit demo, not an A/G financial, institutional, or corporate scoring system. Scope and assumptions differ by demo.</p>
       </div>
     </section>
 
@@ -142,7 +126,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
   </footer>
 </body>
 </html>
