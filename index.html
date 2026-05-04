@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bounded Replay-Risk Audit Demo</title>
+  <meta name="description" content="Bounded Replay-Risk Audit demo for checking whether AI-agent or SaaS workflows can reach approval-bypass, confirmation-bypass, data-disclosure, or destructive-action paths within a supplied model and bound.">
+  <link rel="canonical" href="https://bome2017.github.io/Replay-Verifier/">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -26,17 +28,31 @@
     <section class="hero">
       <p class="eyebrow">Bounded Replay-Risk Audit Demo</p>
       <h1>Find dangerous workflow paths before deployment.</h1>
-      <p class="lead">A bounded replay-risk audit checks whether a supplied workflow model can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs, within the configured bound.</p>
+      <p class="lead">A pre-deployment workflow check for AI-agent and SaaS workflows: does a reachable action ordering bypass an approval, confirmation, or escalation gate within the supplied model and bound?</p>
+    </section>
+
+    <section class="section">
+      <h2>Example: a wire can be sent without verification</h2>
+      <p>In the vendor-payment workflow, the model includes vendor verification, compliance review, and manager approval actions. The unsafe version still allows <code>send_wire</code> after <code>wire_prepared</code> without requiring those gates. The Replay Verifier finds the reachable path:</p>
+      <p class="trace-line">read_invoice &rarr; access_vendor_record &rarr; access_payment_system &rarr; prepare_wire &rarr; send_wire</p>
+      <p>The guarded variant requires <code>vendor_verified</code>, <code>compliance_review_passed</code>, and <code>manager_approved</code> before <code>send_wire</code>, and retests <span class="status">SAFE_WITHIN_BOUND</span> under the supplied model and bound.</p>
+      <p>The point is not that the action <code>send_wire</code> is individually mysterious; the risk is that reviewers may assume earlier preparation implies verification when the model does not actually enforce it.</p>
+      <div class="muted-box">
+        <p><strong>Approval gates only protect against composed misuse if the workflow definition actually forces the agent through them.</strong></p>
+      </div>
+      <div class="cta-row">
+        <a class="button" href="examples.html">See the full vendor-payment example</a>
+        <a class="button secondary" href="outputs/agent_vendor_payment_unauthorized/result.json">Unsafe result.json</a>
+      </div>
     </section>
 
     <section class="section">
       <h2>About the Audit</h2>
-      <p>This is a bounded pre-deployment check on a supplied Boolean workflow model. It asks whether the scoped workflow model can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs, within the configured bound.</p>
-      <p>It is useful when a team can describe a workflow as actions, preconditions, effects, and a bad outcome to avoid.</p>
+      <p>A bounded replay-risk audit checks whether a scoped workflow can reach a prohibited outcome before the required approval, confirmation, or escalation gate occurs. It is a pre-deployment workflow check that is useful when a team can describe a workflow as actions, preconditions, effects, and a bad outcome to avoid.</p>
       <div class="grid">
-        <div class="card"><h3>Find Bad Paths</h3><p>Find bad paths in the supplied workflow model.</p></div>
-        <div class="card"><h3>Locate the Guardrail</h3><p>Locate the missing guardrail.</p></div>
-        <div class="card"><h3>Retest the Fix</h3><p>Retest the guarded version.</p></div>
+        <div class="card"><h3>Find Bad Paths</h3><p>Locate reachable bad paths before deployment.</p></div>
+        <div class="card"><h3>Locate the Guardrail</h3><p>Identify the missing approval, confirmation, or escalation precondition.</p></div>
+        <div class="card"><h3>Retest the Fix</h3><p>Retest the guarded variant under the same bound.</p></div>
       </div>
     </section>
 
@@ -64,6 +80,7 @@
 
     <section class="section">
       <h2>What You Get</h2>
+      <p class="note">The audit produces a Bounded Replay Verification Report packaging the items below.</p>
       <div class="grid">
         <div class="card"><h3>Exact Bad-Path Trace</h3><p>The report identifies the action sequence that reaches the prohibited state.</p></div>
         <div class="card"><h3>Missing Guardrail Diagnosis</h3><p>The audit highlights where an approval, confirmation, or escalation precondition is missing.</p></div>
@@ -74,44 +91,31 @@
     </section>
 
     <section class="section">
-      <h2>Example Bad Path</h2>
-      <p class="display-path">Read ticket &rarr; access account data &rarr; draft reply &rarr; send externally</p>
-      <p class="trace-line">read_ticket &rarr; access_customer_account_data &rarr; draft_reply &rarr; send_reply_external</p>
-      <p>The bad state appears because external send occurs before manager approval.</p>
-    </section>
-
-    <section class="section">
       <h2>Current Demo Status</h2>
       <div class="muted-box">
         <ul>
-          <li>Dependency-free bounded reference checker.</li>
-          <li>Optional solver cross-check for supported examples.</li>
-          <li>Multiple workflow families tested.</li>
-          <li>Repeatability dry runs completed.</li>
-          <li>No verifier source-code changes needed for repeatability dry runs.</li>
+          <li>Dependency-free bounded reference checker (the Replay Verifier engine).</li>
+          <li>Optional Z3 sanity cross-check against the reference checker for supported examples.</li>
+          <li>Self-constructed example workflows across multiple failure shapes.</li>
+          <li>Customer-style dry runs completed without verifier source-code changes.</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>Related Public Demos</h2>
-      <p>Related public demos from the same project family. Each demo has its own scope, assumptions, validation status, and limitation notes.</p>
-      <div class="grid">
+      <h2>Why This Matters for AI Agent Tool-Use Safety</h2>
+      <p>LLM-driven agents make tool-use decisions by reasoning over their available actions. When an agent is given a bag of tools, it can sometimes find an action ordering that satisfies the immediate request while bypassing intended guardrails &mdash; even when no individual tool call looks like misuse. <strong>Approval gates only protect against composed misuse if the workflow definition actually forces the agent through them.</strong></p>
+      <p>This audit gives builders a way to model the intended workflow as a small Boolean state machine and ask: <em>is there any reachable action ordering that reaches a forbidden composed state within a given depth?</em> When the answer is <span class="status">UNSAFE</span>, the audit returns the exact step sequence as a reconstructable counterexample, identifies the step where the bad state first appears, and supports a guarded-variant retest after the missing precondition is added.</p>
+      <p class="note">Failure shapes covered by the demo include workflow approval bypass, confirmation bypass, permission escalation, sensitive data export before authorization, and composed action ordering across tool-use steps.</p>
+      <div class="grid two">
         <div class="card">
-          <h3><a href="https://bome2017.github.io/ag-bank-scoreboard/">A/G Bank Scoreboard</a></h3>
-          <p>Public dashboard for A/G-style bank risk monitoring using appearance/ground divergence signals and documented validation boundaries.</p>
+          <h3>Where it fits</h3>
+          <p>Pre-deployment workflow review during agent design and review. Complementary to runtime guardrails like prompt-safety filters, tool permission scopes, and per-call approval UIs &mdash; it catches a different class of failure (composed action ordering) before deployment, in a small artifact a team can version-control alongside the agent definition.</p>
         </div>
         <div class="card">
-          <h3><a href="https://bome2017.github.io/ag-higher-education/">A/G Higher Education</a></h3>
-          <p>Exploratory A/G-style higher-education institutional risk/stability demo with explicit data-scope limits.</p>
+          <h3>Where it does not fit</h3>
+          <p>This is not a probabilistic LLM behavior model, not a runtime monitor, not an IAM/cloud graph analyzer, and not a replacement for security review. It does not reason about prompt injection, tool output content, or whether the agent will choose any particular path at runtime &mdash; only whether the path exists in the workflow definition.</p>
         </div>
-        <div class="card">
-          <h3><a href="https://bome2017.github.io/ag-corporate-filings/">A/G Corporate Filings</a></h3>
-          <p>Corporate filings extension exploring A/G-style distress and disclosure signals from public company filings.</p>
-        </div>
-      </div>
-      <div class="muted-box">
-        <p>Track B is a separate bounded workflow replay-risk audit demo, not an A/G financial, institutional, or corporate scoring system. Scope and assumptions differ by demo.</p>
       </div>
     </section>
 
@@ -121,12 +125,13 @@
       <div class="cta-row">
         <a class="button" href="validation.html">Validation Matrix</a>
         <a class="button secondary" href="audit.html">Audit Package</a>
+        <a class="button secondary" href="service.html">Service</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. This demo is separate from any A/G scoring system; scope and assumptions differ.</p>
   </footer>
 </body>
 </html>

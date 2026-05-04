@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Validation and Repeatability</title>
+  <title>Example Validation Matrix</title>
+  <meta name="description" content="Example validation matrix and reference-checker regression evidence for the Bounded Replay-Risk Audit demo, with an optional Z3 sanity cross-check on supported examples.">
+  <link rel="canonical" href="https://bome2017.github.io/Replay-Verifier/validation.html">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -25,104 +27,129 @@
   <main class="page">
     <section class="hero">
       <p class="eyebrow">Validation</p>
-      <h1>Validation and Repeatability</h1>
-      <p class="lead">The current demo checks scoped Boolean workflow models with a dependency-free bounded reference checker and an optional solver cross-check for supported examples.</p>
+      <h1>Example Validation Matrix</h1>
+      <p class="lead">This page summarizes the demo's example validation matrix: self-constructed workflow examples checked by a dependency-free bounded reference checker (the Replay Verifier engine), with an optional Z3 sanity cross-check on supported examples.</p>
     </section>
 
     <section class="section">
-      <h2>What Has Been Validated</h2>
+      <h2>What this page is &mdash; and is not</h2>
       <div class="grid two">
-        <div class="card"><h3>Reference Tests</h3><p>Bounded reference checker tests pass for the included workflow examples.</p></div>
-        <div class="card"><h3>Solver Cross-Check</h3><p>The optional Z3 solver cross-check agrees with the bounded reference checker on supported examples when run in the local validated environment.</p></div>
-        <div class="card"><h3>Repeatability Runs</h3><p>Repeatability dry runs are completed across support, refund, permission, and data-export workflow families.</p></div>
+        <div class="card">
+          <h3>What it is</h3>
+          <ul>
+            <li>self-constructed demo examples and customer-style dry runs</li>
+            <li>reference-checker regression evidence on those examples</li>
+            <li>optional Z3 sanity cross-check on supported examples</li>
+            <li>reconstructable trace and retest shape evidence</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What it is not</h3>
+          <ul>
+            <li>independent third-party benchmark validation</li>
+            <li>third-party repeatability of the demo</li>
+            <li>production-security validation</li>
+            <li>a global agent-safety claim</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What Has Been Exercised</h2>
+      <div class="grid two">
+        <div class="card"><h3>Reference-Checker Regression</h3><p>Bounded reference-checker tests pass on the included self-constructed workflow examples.</p></div>
+        <div class="card"><h3>Z3 Sanity Cross-Check</h3><p>The optional Z3 backend agrees with the bounded reference checker on supported examples in the local development environment. This is an implementation-QA sanity cross-check, not independent real-world validation.</p></div>
+        <div class="card"><h3>Customer-Style Dry Runs</h3><p>Customer-style dry runs were exercised across support, refund, permission, and data-export workflow shapes without verifier source-code changes.</p></div>
         <div class="card"><h3>Trace and Retest Shape</h3><p>Unsafe cases return reconstructable traces. Guarded variants return <span class="status">SAFE_WITHIN_BOUND</span> under the supplied model and bound.</p></div>
       </div>
     </section>
 
     <section class="section">
-      <h2>Repeatability Matrix</h2>
+      <h2>Demo Exercise Matrix</h2>
+      <p class="note">This in-page table mixes canonical self-constructed demo examples and customer-style dry-run shapes. The downloadable matrix at <a href="docs/repeatability_validation_matrix.md">docs/repeatability_validation_matrix.md</a> covers the customer-style dry runs; the canonical demo example artifacts (including the larger vendor-payment pair) are documented separately in <a href="docs/validation_run_evidence.md">docs/validation_run_evidence.md</a>.</p>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Workflow</th>
-              <th>Failure Shape</th>
+              <th>Workflow shape</th>
+              <th>Failure shape</th>
               <th>Unsafe Result</th>
               <th>First Bad Step</th>
               <th>Guarded Variant Result</th>
-              <th>Solver Cross-Check</th>
+              <th>Z3 Sanity Cross-Check</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Support reply</td>
+              <td>Support reply (dry run)</td>
               <td>External reply after customer account data access before manager approval.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>4</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>Matched</td>
+              <td>Agreed</td>
             </tr>
             <tr>
-              <td>Refund approval</td>
+              <td>Refund approval (dry run)</td>
               <td>Refund issued before manager approval.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>4</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>Matched</td>
+              <td>Agreed</td>
             </tr>
             <tr>
-              <td>Permission escalation</td>
+              <td>Permission escalation (dry run)</td>
               <td>Elevated access granted before administrator authorization.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>4</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>Matched</td>
+              <td>Agreed</td>
             </tr>
             <tr>
-              <td>Data export</td>
+              <td>Data export (dry run)</td>
               <td>Sensitive data exported before export authorization.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>3</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>Matched</td>
+              <td>Agreed</td>
             </tr>
             <tr>
-              <td>Email exfiltration</td>
+              <td>Email exfiltration (canonical)</td>
               <td>Customer data emailed externally without approval.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>3</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>Matched</td>
+              <td>Agreed</td>
             </tr>
             <tr>
-              <td>Delete confirmation</td>
+              <td>Delete confirmation (canonical)</td>
               <td>File deletion before confirmation.</td>
               <td><span class="status">UNSAFE</span></td>
               <td>2</td>
               <td><span class="status">SAFE_WITHIN_BOUND</span></td>
-              <td>Matched</td>
+              <td>Agreed</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="note">Full artifact names are available in the downloadable repeatability matrix.</p>
+      <p class="note">"Z3 Sanity Cross-Check: Agreed" means the optional Z3 backend produced the same status as the reference checker on that example. Agreement is necessary and useful for implementation QA, but it is not independent real-world validation.</p>
     </section>
 
     <section class="section">
       <h2>Why This Matters</h2>
-      <p>The same audit pattern was applied across multiple workflow types without changing verifier source code. That supports the service workflow: intake, model, check, trace, remediate, and retest.</p>
+      <p>The same audit pattern was applied across multiple self-constructed workflow shapes without changing verifier source code. That supports the service workflow &mdash; intake, model, check, trace, remediate, retest &mdash; not unrestricted system safety.</p>
     </section>
 
     <section class="section">
-      <h2>Limits of Validation</h2>
+      <h2>Limits of This Evidence</h2>
       <div class="boundary-box">
-        <p>Validation shows repeatability on scoped Boolean workflow models. It does not establish unrestricted system safety or full real-world security coverage.</p>
+        <p>This is example-level evidence on self-constructed workflows. It does not establish independent benchmark validation, third-party repeatability, production-security validation, or global agent-safety. Results are bounded to the supplied workflow model and configured search depth.</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds.</p>
   </footer>
 </body>
 </html>

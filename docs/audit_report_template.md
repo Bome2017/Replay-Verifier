@@ -1,6 +1,6 @@
-# Bounded Replay-Risk Audit Report Template
+# Bounded Replay Verification Report Template
 
-# Bounded Replay-Risk Audit Report
+# Bounded Replay Verification Report
 
 ## 1. Executive Summary
 

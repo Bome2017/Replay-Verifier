@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Audit Package</title>
+  <meta name="description" content="Audit package for the Bounded Replay-Risk Audit demo: intake, model, bounded verification, trace, remediation, retest, and Bounded Replay Verification Report.">
+  <link rel="canonical" href="https://bome2017.github.io/Replay-Verifier/audit.html">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -26,8 +28,8 @@
     <section class="hero">
       <p class="eyebrow">Audit Package</p>
       <h1>Audit Package</h1>
-      <p class="lead">A bounded replay-risk audit packages intake, model, verifier result, trace evidence, remediation, retest, and a written report.</p>
-      <p class="lead secondary-lead">The audit is designed to produce a decision artifact: what bad path exists, where the guardrail is missing, and what changed in the retest.</p>
+      <p class="lead">A bounded replay-risk audit packages intake, model, verifier result, trace evidence, remediation, retest, and a written Bounded Replay Verification Report.</p>
+      <p class="lead secondary-lead">The audit produces a decision artifact: what bad path exists, where the guardrail is missing, and what changed in the retest.</p>
     </section>
 
     <section class="section">
@@ -41,6 +43,12 @@
         <span>retest</span>
         <span>report</span>
       </div>
+    </section>
+
+    <section class="section">
+      <h2>What you provide vs. what the audit models</h2>
+      <p>Plain-language input is acceptable. You do not need to arrive with a formal Boolean model. The intake stage accepts agent prompts, tool/function schemas, MCP/server tool lists, approval rules, workflow diagrams, runbooks, or product specs. The modeling stage converts that material into state variables, actions, preconditions, effects, a forbidden condition, a bound, and explicit assumptions and exclusions.</p>
+      <p class="note">See the <a href="service.html">Service page</a> for the starter package and the intake CTA, and the <a href="docs/customer_input_template.md">customer input template</a> for the intake format.</p>
     </section>
 
     <section class="section grid two">
@@ -79,17 +87,18 @@
       <h2>Related Docs</h2>
       <div class="card">
         <ul>
-          <li><a href="../docs/external_one_page_brief.md">External one-page brief</a></li>
-          <li><a href="../docs/repeatability_validation_matrix.md">Repeatability validation matrix</a></li>
-          <li><a href="../docs/customer_input_template.md">Customer input template</a></li>
-          <li><a href="../docs/audit_report_template.md">Audit report template</a></li>
+          <li><a href="docs/external_one_page_brief.md">External one-page brief</a></li>
+          <li><a href="docs/repeatability_validation_matrix.md">Example validation matrix (customer-style dry runs)</a></li>
+          <li><a href="docs/validation_run_evidence.md">Validation run evidence</a></li>
+          <li><a href="docs/customer_input_template.md">Customer input template</a></li>
+          <li><a href="docs/audit_report_template.md">Bounded Replay Verification Report template</a></li>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds.</p>
   </footer>
 </body>
 </html>

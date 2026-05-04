@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Starter Audit Package</title>
+  <meta name="description" content="Starter Bounded Replay-Risk Audit package: scoped workflow, forbidden condition, bounded check, trace, remediation, retest. Pre-deployment workflow review for AI-agent and SaaS workflows.">
+  <link rel="canonical" href="https://bome2017.github.io/Replay-Verifier/service.html">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -26,22 +28,54 @@
     <section class="hero">
       <p class="eyebrow">Service</p>
       <h1>Starter Audit Package</h1>
-      <p class="lead">The starter audit package is intentionally narrow: one scoped workflow, one forbidden condition, a small model, a bounded check, and a report that preserves assumptions.</p>
+      <p class="lead">The starter audit package is intentionally narrow: one scoped workflow, one forbidden condition, a small model, a bounded check, and a Bounded Replay Verification Report that preserves assumptions.</p>
+      <div class="muted-box">
+        <p><strong>Approval gates only protect against composed misuse if the workflow definition actually forces the agent through them.</strong></p>
+      </div>
     </section>
 
     <section class="section">
       <h2>Starter Package</h2>
       <div class="card">
-        <h3>Bounded Replay-Risk Audit - Starter Package</h3>
+        <h3>Bounded Replay-Risk Audit &mdash; Starter Package</h3>
         <ul>
           <li>one workflow</li>
           <li>one forbidden condition</li>
           <li>small Boolean model</li>
           <li>bounded verifier run</li>
-          <li>report</li>
+          <li>Bounded Replay Verification Report</li>
           <li>remediation note</li>
           <li>optional guarded retest</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What you provide vs. what the audit models</h2>
+      <p>You do not need to arrive with a formal Boolean model. Typical starting materials are an agent prompt, tool/function schema, MCP/server tool list, approval rule, workflow diagram, runbook, policy description, or product spec. The audit step translates that material into a small explicit workflow model: state variables, actions, preconditions, effects, forbidden condition, bound, assumptions, and exclusions. The customer-facing review point is the model boundary: what is included, what is excluded, and what the result can support.</p>
+      <div class="grid two">
+        <div class="card">
+          <h3>Acceptable starting materials</h3>
+          <ul>
+            <li>agent prompt or system message</li>
+            <li>tool / function schema</li>
+            <li>MCP or server tool list</li>
+            <li>approval, confirmation, or escalation rule</li>
+            <li>workflow diagram or runbook</li>
+            <li>policy description or product spec</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What the audit produces from that</h3>
+          <ul>
+            <li>state variables</li>
+            <li>actions with preconditions and effects</li>
+            <li>forbidden condition</li>
+            <li>configured bound</li>
+            <li>assumptions and exclusions</li>
+            <li>Bounded Replay Verification Report</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -59,32 +93,45 @@
       <div class="card">
         <h2>Best-Fit Risks</h2>
         <ul>
-          <li>approval bypass</li>
+          <li>workflow approval bypass</li>
           <li>confirmation bypass</li>
           <li>external disclosure before review</li>
           <li>destructive action before confirmation</li>
           <li>permission escalation before authorization</li>
           <li>sensitive data export before authorization</li>
+          <li>composed action ordering across agent tool-use</li>
         </ul>
       </div>
+    </section>
+
+    <section class="section">
+      <h2>Request a starter audit</h2>
+      <p>To start, provide one workflow, one dangerous outcome, and the approval/confirmation rule that should block it. Use the customer input template as the intake format, or send equivalent workflow/tool documentation for modeling. Plain-language input is acceptable; the audit step translates it into the formal model.</p>
+      <div class="cta-row">
+        <a class="button" href="docs/customer_input_template.md">Customer input template</a>
+        <a class="button secondary" href="docs/audit_report_template.md">Bounded Replay Verification Report template</a>
+        <a class="button secondary" href="https://github.com/Bome2017/Replay-Verifier">Replay Verifier repository</a>
+      </div>
+      <p class="note">Open a GitHub issue or share the completed template through your normal contact channel.</p>
     </section>
 
     <section class="section">
       <h2>Not Included</h2>
       <div class="boundary-box">
         <ul>
-          <li>unrestricted safety determination</li>
+          <li>unrestricted system safety determination</li>
           <li>full IAM/cloud graph review</li>
           <li>penetration testing replacement</li>
           <li>probabilistic LLM behavior analysis</li>
           <li>legal/compliance certification</li>
+          <li>third-party independent benchmark validation</li>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds.</p>
   </footer>
 </body>
 </html>

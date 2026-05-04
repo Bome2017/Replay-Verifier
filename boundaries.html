@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Boundaries</title>
+  <meta name="description" content="Claim boundaries for the Bounded Replay-Risk Audit demo: what UNSAFE and SAFE_WITHIN_BOUND mean, what is in scope, and what remains outside scope.">
+  <link rel="canonical" href="https://bome2017.github.io/Replay-Verifier/boundaries.html">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -35,42 +37,43 @@
         <h3><span class="status">UNSAFE</span></h3>
         <p>A bad path exists in the supplied model within the configured bound.</p>
         <h3><span class="status">SAFE_WITHIN_BOUND</span></h3>
-        <p>No bad path was found within the supplied model and configured bound.</p>
+        <p>No bad path was found within the supplied model and configured bound. This is not a global safety claim.</p>
       </div>
       <div class="card">
         <h2>What Remains Outside Scope</h2>
         <ul>
           <li>It does not cover behavior outside the supplied model.</li>
           <li>It does not cover all real-world system behavior.</li>
-          <li>It does not replace security review.</li>
+          <li>It is not a replacement for security review.</li>
           <li>It does not model probabilistic LLM/tool behavior.</li>
           <li>It does not perform full IAM/cloud analysis.</li>
+          <li>It does not establish independent benchmark validation or third-party repeatability.</li>
         </ul>
       </div>
     </section>
 
     <section class="section">
-      <h2>Technical Context</h2>
+      <h2>Formal Research Context (Optional Background)</h2>
       <div class="boundary-box">
-        <p>This demo is developed alongside broader formal research, but the public site presents only the bounded workflow audit artifact. Evaluate it on the scoped model, bound, verifier result, trace, remediation, and retest. Formal context is separated into <a href="../docs/TECHNICAL_APPENDIX_FORMAL_CONTEXT.md">the technical appendix</a>.</p>
+        <p>Separate formal research motivates the replay-to-constraint framing and claim discipline behind this demo. The audit's public claims stand on the supplied model, bound, trace, remediation, and retest artifacts. Formal context does not certify this implementation as production-safe and does not prove agent safety. See the <a href="docs/TECHNICAL_APPENDIX_FORMAL_CONTEXT.md">technical appendix</a> for optional background.</p>
       </div>
     </section>
 
     <section class="section">
-      <h2>Sharing Boundary</h2>
+      <h2>Validation Evidence</h2>
       <div class="card">
         <ul>
-          <li><a href="../docs/PUBLIC_PRIVATE_BOUNDARY.md">Public/private boundary</a></li>
-          <li><a href="../docs/EXTERNAL_PACKET_INDEX.md">External packet index</a></li>
-          <li><a href="../docs/STARTER_PACKET_MANIFEST.md">Starter packet manifest</a></li>
-          <li><a href="../docs/TRACKB_PUBLIC_PACKET_FREEZE_REPORT.md">Public packet freeze report</a></li>
+          <li><a href="validation.html">Example validation matrix (in-page)</a></li>
+          <li><a href="docs/repeatability_validation_matrix.md">Customer-style dry-run matrix (markdown)</a></li>
+          <li><a href="docs/validation_run_evidence.md">Validation run evidence (canonical examples)</a></li>
+          <li><a href="docs/TECHNICAL_APPENDIX_FORMAL_CONTEXT.md">Technical appendix: formal research context</a></li>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds. Track B is the internal demo codename.</p>
+    <p>Bounded Replay-Risk Audit Demo &mdash; results are limited to supplied models and configured bounds.</p>
   </footer>
 </body>
 </html>

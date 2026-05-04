@@ -6,9 +6,9 @@ A bounded replay-risk audit checks whether a dangerous action sequence is reacha
 
 The concrete status values are `UNSAFE` and `SAFE_WITHIN_BOUND`.
 
-## Problem
+## Why This Matters
 
-AI-agent and SaaS workflows can contain dangerous action compositions even when each individual action appears permitted. Example: an agent accesses customer data, drafts a reply, and sends it externally before approval.
+Approval gates only protect against composed misuse if the workflow definition actually forces the agent through them. AI-agent and SaaS workflows can contain dangerous action compositions even when each individual action appears permitted &mdash; for example, an agent accesses customer data, drafts a reply, and sends it externally before approval, or a wire is sent before vendor verification, compliance review, or manager approval.
 
 ## What the Audit Does
 
@@ -18,13 +18,22 @@ AI-agent and SaaS workflows can contain dangerous action compositions even when 
 4. Return `UNSAFE` with a reconstructable trace if found.
 5. Return `SAFE_WITHIN_BOUND` if no violation is found within the configured bound.
 
+## Naming
+
+- Service: Bounded Replay-Risk Audit.
+- Tool / engine / demo repo: Replay Verifier.
+- Output artifact: Bounded Replay Verification Report.
+
 ## Example Failure Shapes
 
-- Customer/account data externally disclosed before approval.
-- File deleted before confirmation.
-- Approval-gated variant returns `SAFE_WITHIN_BOUND` under the supplied model.
+- Workflow approval bypass.
+- Confirmation bypass on destructive actions.
+- Permission escalation before authorization.
+- Sensitive data export before authorization.
+- Composed action ordering across agent tool-use steps (e.g. wire sent before vendor verification, compliance review, manager approval).
+- Approval-gated variant returns `SAFE_WITHIN_BOUND` under the supplied model and bound.
 
-## Evidence Returned
+## Evidence Returned (Bounded Replay Verification Report)
 
 - status
 - bound
@@ -37,25 +46,26 @@ AI-agent and SaaS workflows can contain dangerous action compositions even when 
 
 ## Current Demo Status
 
-The current demo includes a dependency-free brute-force reference verifier and an optional locally validated Z3 backend. Both agree on the supported example workflows.
+The current demo includes a dependency-free brute-force reference verifier (the Replay Verifier engine) and an optional Z3 sanity cross-check that runs against the reference checker on supported examples in the local development environment. Z3 agreement is necessary and useful for implementation QA but is not independent real-world validation.
 
 ## Best-Fit Use Cases
 
-- AI-agent tool workflows
+- AI-agent tool-use workflows
 - SaaS approval flows
 - data disclosure review
 - destructive-action review
 - approval-bypass review
-- early-stage product/security review
+- pre-deployment workflow check
 
 ## Not a Fit For
 
-- production-security certification
+- production-security validation
 - legal/compliance certification
 - full IAM/cloud graph analysis
 - penetration testing replacement
 - probabilistic LLM behavior modeling
 - claims about all possible workflow behavior
+- third-party independent benchmark validation
 
 ## Deliverable
 
@@ -70,19 +80,17 @@ The current demo includes a dependency-free brute-force reference verifier and a
 
 Results are bounded to the supplied model and execution depth. `SAFE_WITHIN_BOUND` means no violation was found within that configured bound and model; it does not establish unrestricted system safety.
 
-## Formal Backing
+## Formal Research Context
 
-The associated CRSL/RSVT formal proof package (CRSL = Certificate–Replay Substitution Law; RSVT = Recursive Structural Verification Theory) supplies replay-to-SAT infrastructure and claim discipline. It does not certify this implementation as production-safe.
-
-Levels 2.8d-RX, 2.8e, and 3.1 provide build-verified Lean reductions from scoped replay source classes to `TRACED_3_SAT`. Level 3.2-1 proves `CNF3_SAT` and `TRACED_3_SAT` equivalent as languages over `Cnf3`. These results support architectural credibility, not operational guarantees for the demo.
+Separate formal research motivates the replay-to-constraint framing and claim discipline behind this demo. The audit's public claims stand on the supplied model, bound, trace, remediation, and retest artifacts. Formal context does not certify this implementation as production-safe and does not prove agent safety. Optional background is in `docs/TECHNICAL_APPENDIX_FORMAL_CONTEXT.md`.
 
 ## Suggested First Engagement
 
-Bounded Replay-Risk Audit - Starter Package
+Bounded Replay-Risk Audit &mdash; Starter Package
 
 - one workflow
 - one forbidden condition
 - small Boolean model
 - bounded verifier run
-- report with witness trace if unsafe
+- Bounded Replay Verification Report with witness trace if unsafe
 - remediation/retest note

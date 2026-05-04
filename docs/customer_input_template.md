@@ -15,6 +15,19 @@ Name:
 - What is outside the model?
 - What assumptions are being made?
 
+## Input Form
+
+Plain-language input is acceptable. The formal table below can be completed during the modeling step. Acceptable starting materials include:
+
+- agent prompt or system message
+- tool / function schema
+- MCP or server tool list
+- approval, confirmation, or escalation rule
+- workflow diagram or runbook
+- policy description or product spec
+
+The audit step translates that material into the formal workflow model below (state variables, actions, preconditions, effects, forbidden condition, bound, assumptions, exclusions). You do not need to arrive with a Boolean model already filled in.
+
 ## State Variables
 
 For v0.1/v0.2, variables are Boolean only.
@@ -54,7 +67,7 @@ Higher bounds increase search cost. `SAFE_WITHIN_BOUND` means no violation was f
 - real network behavior
 - real cloud/IAM behavior
 - legal/compliance determination
-- production-security certification
+- production-security validation
 
 ## Customer Confirmation
 
